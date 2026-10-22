@@ -22,4 +22,4 @@ class SteelDefectDataset(Dataset):
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         if self.transform:
             img = self.transform(image=img)["image"]
-            return img, label
+        return img, label
