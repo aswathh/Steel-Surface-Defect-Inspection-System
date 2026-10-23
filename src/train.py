@@ -5,7 +5,7 @@ from pathlib import Path
 
 from dataset import SteelDefectDataset
 from transform import train_transform, Val_transform
-from model import SimpleCNN
+from model import SimpleCNN , build_resnet18
 
 root = Path("C:/Tasks/Steel Surface Defect Inspection System/data/NEU-DET")
 classes = ["crazing", "inclusion", "patches", "pitted_surface", "rolled-in_scale", "scratches"]
@@ -18,9 +18,12 @@ val_ds = SteelDefectDataset(root, "validation", classes, transform=Val_transform
 train_loader = DataLoader(train_ds, batch_size=32, shuffle=True)
 val_loader = DataLoader(val_ds, batch_size=32, shuffle=False)
 
-model = SimpleCNN(n_classes=6).to(device)
+#model = SimpleCNN(n_classes=6).to(device)
+model = build_resnet18().to(device)
+
 loss_fn = nn.CrossEntropyLoss()
-optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
+#optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
+optimizer = torch.optim.Adam(model.fc.parameters(), lr=1e-3) # restnet18
 
 
 def train_one_epoch():
@@ -58,5 +61,6 @@ if __name__ == "__main__":
         print(f"Epoch {epoch+1}/{epochs} - loss: {train_loss:.4f} - val_acc: {val_acc:.4f}")
 
    
-    torch.save(model.state_dict(), Path(__file__).resolve().parent.parent / "models" / "simple_cnn.pt")
+    #torch.save(model.state_dict(), Path(__file__).resolve().parent.parent / "models" / "simple_cnn.pt")
+    torch.save(model.state_dict(), Path(__file__).resolve().parent.parent / "models" / "resnet18.pt")
     print("Model saved.")
