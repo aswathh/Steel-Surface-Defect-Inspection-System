@@ -15,10 +15,9 @@ class SimpleCNN(nn.Module):
             nn.AdaptiveAvgPool2d(1),
             nn.Flatten(),
             nn.Dropout(0.3),
-            nn.Linear(128*28*28, 6)
+            nn.Linear(128, n_classes),
         )
-
-       
+        
 
     def forward(self,x):
         x= self.features(x)
