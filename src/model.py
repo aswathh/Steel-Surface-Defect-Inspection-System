@@ -12,10 +12,13 @@ class SimpleCNN(nn.Module):
             nn.Conv2d(64,128, 3, padding=1),nn.BatchNorm2d(128),nn.ReLU(),nn.MaxPool2d(2)
             )
         self.head = nn.Sequential(
+            nn.AdaptiveAvgPool2d(1),
             nn.Flatten(),
             nn.Dropout(0.3),
             nn.Linear(128*28*28, 6)
         )
+
+       
 
     def forward(self,x):
         x= self.features(x)

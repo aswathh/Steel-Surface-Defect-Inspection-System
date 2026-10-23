@@ -57,5 +57,6 @@ if __name__ == "__main__":
         val_acc = evaluate()
         print(f"Epoch {epoch+1}/{epochs} - loss: {train_loss:.4f} - val_acc: {val_acc:.4f}")
 
-    torch.save(model.state_dict(), "../models/simple_cnn.pt")
+   
+    torch.save(model.state_dict(), Path(__file__).resolve().parent.parent / "models" / "simple_cnn.pt")
     print("Model saved.")
