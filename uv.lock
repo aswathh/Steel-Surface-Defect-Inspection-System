@@ -1988,6 +1988,7 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "albumentations" },
+    { name = "keras" },
     { name = "matplotlib" },
     { name = "opencv-python" },
     { name = "pandas" },
@@ -2001,6 +2002,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "albumentations", specifier = ">=2.0.8" },
+    { name = "keras", specifier = ">=3.15.1" },
     { name = "matplotlib", specifier = ">=3.11.2" },
     { name = "opencv-python", specifier = ">=5.0.0.93" },
     { name = "pandas", specifier = ">=3.0.6" },
